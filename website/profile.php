@@ -1,298 +1,290 @@
 <?php
-include('header.php');
-include('connection.php');
+include "headerss.php";
 
 // Check if 'id' parameter is set in the URL
-if(isset($_GET['id'])) {
-// Fetch details for a specific lawyer based on 'id'
-$id = $_GET['id'];
-$sql = "SELECT *
-FROM lawyer
-JOIN categorie ON categorie.cat_id = lawyer.specialist
-WHERE lawyer.id = '$id';";
-$res = mysqli_query($con, $sql);
-if(mysqli_num_rows($res) > 0) {
-$data = mysqli_fetch_assoc($res);
-
+if (isset($_GET['id'])) {
+    // Fetch details for a specific lawyer based on 'id'
+    $id = $_GET['id'];
+    $sql = "SELECT *
+    FROM lawyer
+    JOIN categorie ON categorie.cat_id = lawyer.specialist
+    WHERE lawyer.id = '$id';";
+    $res = mysqli_query($con, $sql);
+}
+if (mysqli_num_rows($res) > 0) {
+    $data = mysqli_fetch_assoc($res);
+}
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="profile.css">
-    <style>
-        @media (max-width:800px) {
-    .container-fluid img {
-        margin: 20px;
 
-    }
-}
-    
 
-        .profile {
-            display: flex;
-        }
+<!-- Favicon -->
+<link href="img/favicon.ico" rel="icon">
 
-        .profile h1 {
-            font-family: "Roboto", sans-serif;
-            font-weight: 300;
-            font-style: normal;
-            z-index: 1;
-            padding-left: 20px;
-            /* letter-spacing: 1px; */
-            padding-top: 5px;
-        }
+<!-- Google Web Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
-        .profile .ex {
-            font-family: "Roboto", sans-serif;
-            font-weight: 300;
-            font-style: normal;
-            padding-left: 30px;
-            font-size: 17px;
-            padding-top: 1%;
-            padding-top: 1.3%;
-        }
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
-        .bio {
-            font-family: "PT Sans", sans-serif;
-            font-weight: 400;
-            font-style: normal;
-            /* height: 400px; */
-            width: 900px;
-            position: relative;
-            display: block;
-            padding-left: 190px;
-            margin-top: -50px;
-            overflow-wrap: break-word;
-        }
+<!-- Libraries Stylesheet -->
+<link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+<link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
-        .add {
-            /* height: 400px; */
-            width: 900px;
-            position: relative;
-            display: block;
-            padding-left: 190px;
-            margin-top: -8px;
-            overflow-wrap: break-word;
-        }
+<!-- Customized Bootstrap Stylesheet -->
+<link href="profile.css" rel="stylesheet">
 
-        @media (max-width:1300px) {
-            .profile {
-                display: block;
-            }
 
-            .profile h1 {
-                padding-left: 50px;
-                padding-top: 2%;
-            }
 
-            .profile .ex {
-                padding-left: 50px;
-                padding-top: 1px;
-                padding-bottom: 1px;
-            }
 
-            .bio {
-                width: auto;
-                overflow-wrap: break-word;
-                padding-top: 20px;
-                padding-left: 50px;
 
-            }
 
-            .add {
-                width: auto;
-                overflow-wrap: break-word;
-                padding-top: 2px;
-                padding-left: 50px;
 
-            }
-        }
 
-        .image {
-            position: relative;
-            border-radius: 50%;
-            width: 130px;
-            height: 130px;
-            overflow: hidden;
-            z-index: 2;
-            margin-top: -25px;
-            margin-left: 40px;
-        }
 
-        @media (max-width: 1300px) {
-            .image {
-                margin-left: 35px;
-            }
 
-        }
+<!-- Header Start -->
+<div class="container-fluid bg-primary d-flex align-items-center mb-5 py-5" id="home" style="min-height: 100vh;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-5 px-5 pl-lg-0 pb-5 pb-lg-0">
+            <img src="../website/Login&Singup/Lawyer Singup/uploads/<?php echo $data['image']; ?>" alt="Image" class="img-fluid w-100 rounded-circle shadow-sm">
+            </div>
+            <div class="col-lg-7 text-center text-lg-left">
+                <h3 class="text-white font-weight-normal mb-3">I'm</h3>
+                <h1 class="display-3 text-uppercase text-primary mb-2" style="-webkit-text-stroke: 2px #ffffff;"><?php echo $data['name'] ?> <?php echo $data['last name'] ?></h1>
+                <h1 class="typed-text-output d-inline font-weight-lighter text-white"></h1>
+                <div class="typed-text d-none"><?php echo $data['cat_name'] ?></div>
+                <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5">
+                    <a href="./appo/appoint.php?id=<?php echo $id ?>" class="btn btn-outline-light mr-5">Appointment</a>
 
-        .image img {
-            width: 130px;
-            height: 130px;
-        }
 
-        .about {
-            /* margin: auto; */
-            margin-top: 5%;
-            max-width: 850px;
-            height: auto;
-            /* border: 1px solid rgb(233, 233, 233); */
-            box-shadow: none;
-            border-radius: 5px;
-        }
-
-        .about h2 {
-            font-size: 40px;
-            padding-left: 40px;
-            padding-top: 5px;
-            padding-bottom: 0;
-            font-family: "Crimson Text", serif;
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        .about p {
-            overflow-wrap: break-word;
-            padding-left: 40px;
-            padding-right: 40px;
-        }
-
-        .education {
-            /* margin: auto; */
-            margin-top: 5%;
-            max-width: 1000px;
-            height: auto;
-            /* border: 1px solid rgb(233, 233, 233); */
-            box-shadow: none;
-            border-radius: 5px;
-        }
-
-        .education h2 {
-            font-size: 40px;
-            padding-left: 30px;
-            padding-top: 5px;
-            padding-bottom: 0;
-            font-family: "Crimson Text", serif;
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        .education ul {
-            /* overflow-wrap: break-word; */
-            padding-left: 60px;
-        }
-
-        .box {
-            position: relative;
-            z-index: 1;
-        }
-
-        .appoint {
-            z-index: 2;
-            margin-right: 200px;
-            float: right;
-            width: 200px;
-            height: 60px;
-            border-radius: 10px;
-            font-size: 20px;
-            font-weight: 500;
-            text-align: center;
-            letter-spacing: 1px;
-            text-decoration: none;
-            color: #000;
-            background: transparent;
-            cursor: pointer;
-            transition: ease-out 0.5s;
-            border: 2px solid #000;
-            color: #fff;
-            background: transparent;
-            cursor: pointer;
-            transition: ease-out 0.5s;
-            border: 2px solid #fff;
-            border-radius: 10px;
-            box-shadow: inset 0 0 0 0 #ffc300;
-        }
-
-        .appoint:hover {
-            color: #000;
-            box-shadow: inset 0 -100px 0 0 #ffc300;
-            border: 2px solid #ffc300;
-        }
-
-        .appoint:active {
-            transform: scale(0.9);
-        }
-
-        @media (max-width:900px) {
-            .appoint {
-                float: none;
-                margin-right: 0;
-                margin-left: 40px;
-            }
-        }
-    
-    </style>
-</head>
-<body>
-    <!-- HTML for displaying detailed lawyer information -->
-<div class="box">
-    <div class="container-fluid" style="width: 500px; margin-left: 0px;">
-        <img src="<?php echo $data['cover image']; ?>" class="img-fluid" id="ban" alt="..." style="border-radius: 5px; max-width:800px; margin-left:0px;">
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="profile">
-        <div class="image"><img src="<?php echo $data['image'] ?>" alt="" style="scale: 1.1;"></div>
-        <h1><?php echo $data['name'] ?> <?php echo $data['last name'] ?></h1>
-        <p class="ex "><?php echo $data['since'] ?>yrs Experience</p><br>
-    </div>
-
-    <p class="bio"><?php echo $data['cat_name'] ?></p>
-
-    <p class="add "><?php echo $data['address'] ?></p>
-    <a href=""><button class="appoint">Appointment</button></a>
-
-    <div class="about">
-        <h2>About</h2>
-        <p><?php echo $data['about me'] ?></p>
-    </div><br>
-
-    <div class="education">
-        <h2>Services</h2>
-        <ul>
-            <li><?php echo $data['description'] ?></li>
-        </ul>
-    </div><br><br>
-
-    <div class="education">
-        <h2>Available Timings</h2>
-        <ul>
-            <li><?php echo $data['available'] ?></li>
-        </ul>
-    </div><br><br>
-
-    <div class="education">
-        <h2>Education</h2>
-        <ul>
-            <li>I have got the law degree from <?php echo $data['university'] ?></li>
-        </ul>
-    </div><br><br><br>
 </div>
-</body>
-</html>
+<!-- Header End -->
+
+
+<!-- About Start -->
+<div class="container-fluid py-5" id="about">
+    <div class="container">
+        <div class="position-relative d-flex align-items-center justify-content-center">
+            <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">About</h1>
+            <h1 class="position-absolute text-uppercase text-primary">About Me</h1>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-lg-5 pb-4 pb-lg-0">
+            <img src="../website/Login&Singup/Lawyer Singup/uploads/<?php echo $data['image']; ?>" alt="Image" class="img-fluid rounded w-100">
+            </div>
+            <div class="col-lg-7">
+                <h3 class="mb-4"><?php echo $data['cat_name'] ?></h3>
+                <p><?php echo $data['about me'] ?></p>
+                <div class="row mb-3">
+                    <div class="col-sm-6 py-2">
+                        <h6>Name: <span class="text-secondary"><?php echo $data['name'] ?> <?php echo $data['last name'] ?></span></h6>
+                    </div>
+                    <div class="col-sm-6 py-2">
+                        <h6>Birthday: <span class="text-secondary">1 April 1990</span></h6>
+                    </div>
+                    <div class="col-sm-6 py-2">
+                        <h6>Degree: <span class="text-secondary"> <?php echo $data['university'] ?></span></h6>
+                    </div>
+                    <div class="col-sm-6 py-2">
+                        <h6>Experience: <span class="text-secondary"><?php echo $data['since'] ?> Years</span></h6>
+                    </div>
+                    <div class="col-sm-6 py-2">
+                        <h6>Phone: <span class="text-secondary"><?php echo $data['number'] ?></span></h6>
+                    </div>
+                    <div class="col-sm-6 py-2">
+                        <h6>Email: <span class="text-secondary"><?php echo $data['email'] ?></span></h6>
+                    </div>
+                    <div class="col-sm-6 py-2">
+                        <h6>Address: <span class="text-secondary"><?php echo $data['address'] ?></span></h6>
+                    </div>
+                    <div class="col-sm-6 py-2">
+                        <h6>Freelance: <span class="text-secondary">Available</span></h6>
+                    </div>
+                </div>
+
+                <a href="" class="btn btn-outline-primary">Hire Me</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
 
 
 
 
 
+
+
+
+
+<!-- Portfolio Start -->
+<!-- <div class="container-fluid pt-5 pb-3" id="portfolio">
+        <div class="container">
+            <div class="position-relative d-flex align-items-center justify-content-center">
+                <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Gallery</h1>
+                <h1 class="position-absolute text-uppercase text-primary">My Portfolio</h1>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center mb-2">
+                    <ul class="list-inline mb-4" id="portfolio-flters">
+                        <li class="btn btn-sm btn-outline-primary m-1 active"  data-filter="*">All</li>
+                        <li class="btn btn-sm btn-outline-primary m-1" data-filter=".first">Design</li>
+                        <li class="btn btn-sm btn-outline-primary m-1" data-filter=".second">Development</li>
+                        <li class="btn btn-sm btn-outline-primary m-1" data-filter=".third">Marketing</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row portfolio-container">
+                <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
+                    <div class="position-relative overflow-hidden mb-2">
+                        <img class="img-fluid rounded w-100" src="img/portfolio-1.jpg" alt="">
+                        <div class="portfolio-btn bg-primary d-flex align-items-center justify-content-center">
+                            <a href="img/portfolio-1.jpg" data-lightbox="portfolio">
+                                <i class="fa fa-plus text-white" style="font-size: 60px;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 portfolio-item second">
+                    <div class="position-relative overflow-hidden mb-2">
+                        <img class="img-fluid rounded w-100" src="img/portfolio-2.jpg" alt="">
+                        <div class="portfolio-btn bg-primary d-flex align-items-center justify-content-center">
+                            <a href="img/portfolio-2.jpg" data-lightbox="portfolio">
+                                <i class="fa fa-plus text-white" style="font-size: 60px;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 portfolio-item third">
+                    <div class="position-relative overflow-hidden mb-2">
+                        <img class="img-fluid rounded w-100" src="img/portfolio-3.jpg" alt="">
+                        <div class="portfolio-btn bg-primary d-flex align-items-center justify-content-center">
+                            <a href="img/portfolio-3.jpg" data-lightbox="portfolio">
+                                <i class="fa fa-plus text-white" style="font-size: 60px;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
+                    <div class="position-relative overflow-hidden mb-2">
+                        <img class="img-fluid rounded w-100" src="img/portfolio-4.jpg" alt="">
+                        <div class="portfolio-btn bg-primary d-flex align-items-center justify-content-center">
+                            <a href="img/portfolio-4.jpg" data-lightbox="portfolio">
+                                <i class="fa fa-plus text-white" style="font-size: 60px;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 portfolio-item second">
+                    <div class="position-relative overflow-hidden mb-2">
+                        <img class="img-fluid rounded w-100" src="img/portfolio-5.jpg" alt="">
+                        <div class="portfolio-btn bg-primary d-flex align-items-center justify-content-center">
+                            <a href="img/portfolio-5.jpg" data-lightbox="portfolio">
+                                <i class="fa fa-plus text-white" style="font-size: 60px;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 portfolio-item third">
+                    <div class="position-relative overflow-hidden mb-2">
+                        <img class="img-fluid rounded w-100" src="img/portfolio-6.jpg" alt="">
+                        <div class="portfolio-btn bg-primary d-flex align-items-center justify-content-center">
+                            <a href="img/portfolio-6.jpg" data-lightbox="portfolio">
+                                <i class="fa fa-plus text-white" style="font-size: 60px;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+<!-- Portfolio End -->
+
+
+
+
+
+<!-- Blog Start -->
+<div class="container-fluid pt-5" id="blog">
+    <div class="container">
+        <div class="position-relative d-flex align-items-center justify-content-center">
+            <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Blog</h1>
+            <h1 class="position-absolute text-uppercase text-primary">Latest Blog</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 mb-5">
+                <div class="position-relative mb-4">
+                    <img class="img-fluid rounded w-100" src="img/blog-1.jpg" alt="">
+                    <div class="blog-date">
+                        <h4 class="font-weight-bold mb-n1">01</h4>
+                        <small class="text-white text-uppercase">Jan</small>
+                    </div>
+                </div>
+                <h5 class="font-weight-medium mb-4">Rebum lorem no eos ut ipsum diam tempor sed rebum elitr ipsum</h5>
+                <a class="btn btn-sm btn-outline-primary py-2" href="">Read More</a>
+            </div>
+            <div class="col-lg-4 mb-5">
+                <div class="position-relative mb-4">
+                    <img class="img-fluid rounded w-100" src="img/blog-2.jpg" alt="">
+                    <div class="blog-date">
+                        <h4 class="font-weight-bold mb-n1">01</h4>
+                        <small class="text-white text-uppercase">Jan</small>
+                    </div>
+                </div>
+                <h5 class="font-weight-medium mb-4">Rebum lorem no eos ut ipsum diam tempor sed rebum elitr ipsum</h5>
+                <a class="btn btn-sm btn-outline-primary py-2" href="">Read More</a>
+            </div>
+            <div class="col-lg-4 mb-5">
+                <div class="position-relative mb-4">
+                    <img class="img-fluid rounded w-100" src="img/blog-3.jpg" alt="">
+                    <div class="blog-date">
+                        <h4 class="font-weight-bold mb-n1">01</h4>
+                        <small class="text-white text-uppercase">Jan</small>
+                    </div>
+                </div>
+                <h5 class="font-weight-medium mb-4">Rebum lorem no eos ut ipsum diam tempor sed rebum elitr ipsum</h5>
+                <a class="btn btn-sm btn-outline-primary py-2" href="">Read More</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Blog End -->
+
+
+
+
+
+
+
+<!-- Scroll to Bottom -->
+<i class="fa fa-2x fa-angle-down text-white scroll-to-bottom"></i>
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-outline-dark px-0 back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="lib/typed/typed.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="lib/isotope/isotope.pkgd.min.js"></script>
+<script src="lib/lightbox/js/lightbox.min.js"></script>
+
+
+
+
+
+<!-- Template Javascript -->
+<script src="main.js"></script>
 <?php
- } else {
-    echo "<p>No lawyer found with ID: $id</p>";
-}
-} else {
-// Display a list of lawyers or handle other cases
-// Example: Fetch list of lawyers and display links to their profiles
-}
-include('footer.php');
+include "footer.php";
 ?>

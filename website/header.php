@@ -9,9 +9,9 @@ function checkUserType($conn) {
         $user_type = $_SESSION['user_type'];
 
         if ($user_type == 'user') {
-            $query = "SELECT name, email FROM user WHERE email='$email'";
+            $query = "SELECT id, name, email FROM user WHERE email='$email'";
         } else if ($user_type == 'lawyer') {
-            $query = "SELECT name, email, image FROM lawyer WHERE email='$email'";
+            $query = "SELECT id, name, email, image FROM lawyer WHERE email='$email'";
         }
 
         $result = $conn->query($query);
@@ -85,7 +85,7 @@ $user_info = checkUserType($conn);
     </style>
 </head>
 <body>
-    <div class="colorlib-loader"></div>
+    <div class="colorlib-loader">
     
     <div id="page">
     <nav class="colorlib-nav" role="navigation">
@@ -113,20 +113,21 @@ $user_info = checkUserType($conn);
                                         <?php if ($_SESSION['user_type'] == 'user'): ?>
                                             <li><a href="#"><?= $user_info['email'] ?></a></li>
                                         <?php elseif ($_SESSION['user_type'] == 'lawyer'): ?>
-                                            <li><a href="profile.php">Profile</a></li>
+                                            <li><a href="update_law.php?id=<?php echo $data['id'] ?>">Profile</a></li>
                                         <?php endif; ?>
                                         <li><a href="./Login&Singup/logout.php">Log out</a></li>
                                     </ul>
                                 </li>
-                            <?php else: ?>
-                                <li><a href="Login&Singup/login_email.php"><i class="fa-solid fa-user"></i></a></li>
-                            <?php endif; ?>
+                                <?php else: ?>
+                                    <li><a href="Login&Singup/login_email.php"><i class="fa-solid fa-user"></i></a></li>
+                                    <?php endif; ?>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </nav>
-    <!-- Rest of the HTML content -->
+    </div>
+    </div>
 </body>
 </html>

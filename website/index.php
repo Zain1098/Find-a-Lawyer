@@ -1,6 +1,5 @@
 <?php
-include "header.php";
-include ('connection.php');
+include "headerss.php";
 ?>
 	<aside id="colorlib-hero" class="js-fullheight">
 		<div class="flexslider js-fullheight">
@@ -13,7 +12,7 @@ include ('connection.php');
 			   				<div class="slider-text-inner">
 			   					<h1>We help to solve business law solution</h1>
 									<h2>Your Legal Solution starts here!</h2>
-									<p><a class="btn btn-primary btn-lg" href="#">Make An Appointment</a></p>
+									<p><a class="btn btn-primary btn-lg" href="lawyer.php">Find a Lawyer</a></p>
 			   				</div>
 			   			</div>
 			   		</div>
@@ -27,7 +26,7 @@ include ('connection.php');
 			   				<div class="slider-text-inner">
 			   					<h1>Your ultimate law &amp; legal Sulution</h1>
 									<h2>Visit our sites here! <a href="#" target="_blank">lawfirm.com</a></h2>
-									<p><a class="btn btn-primary btn-lg btn-learn" href="#">Make An Appointment</a></p>
+									<p><a class="btn btn-primary btn-lg" href="lawyer.php">Find a Lawyer</a></p>
 			   				</div>
 			   			</div>
 			   		</div>
@@ -41,7 +40,7 @@ include ('connection.php');
 			   				<div class="slider-text-inner">
 			   					<h1>Defend Your Constitutional Right with Legal Help</h1>
 									<h2>Visit our sites here! <a href="#" target="_blank">lawfirm.com</a></h2>
-									<p><a class="btn btn-primary btn-lg btn-learn" href="#">Make An Appointment</a></p>
+									<p><a class="btn btn-primary btn-lg" href="lawyer.php">Find a Lawyer</a></p>
 			   				</div>
 			   			</div>
 			   		</div>
@@ -343,7 +342,7 @@ include ('connection.php');
 			<div class="row">
 				<div class="col-md-4 col-sm-4 text-center animate-box" data-animate-effect="fadeIn">
 					<div class="colorlib-staff">
-						<img src="images/user-2.jpg" alt="Template">
+						<img src="images/lawyer 1.jpg" alt="Template">
 						<h3>John Simon</h3>
 						<strong class="role">Counsel</strong>
 						<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
@@ -357,7 +356,7 @@ include ('connection.php');
 				</div>
 				<div class="col-md-4 col-sm-4 text-center animate-box" data-animate-effect="fadeIn">
 					<div class="colorlib-staff">
-						<img src="images/user-2.jpg" alt="Template">
+						<img src="images/lawyer 2.jpg" alt="Template">
 						<h3>John Doe</h3>
 						<strong class="role">Head of International Practice</strong>
 						<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
@@ -371,7 +370,7 @@ include ('connection.php');
 				</div>
 				<div class="col-md-4 col-sm-4 text-center animate-box" data-animate-effect="fadeIn">
 					<div class="colorlib-staff">
-						<img src="images/user-2.jpg" alt="Template">
+						<img src="images/lawyer 3.jpg" alt="Template">
 						<h3>Peter Washington</h3>
 						<strong class="role">Managing Partner, Attorney</strong>
 						<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>

@@ -45,12 +45,12 @@ Content body start
                                     <?php
                                     while ($data = mysqli_fetch_assoc($result)) { ?>
                                         <tr>
-                                            <td><?php echo $data['id'] ?></td>
+                                            <td><?php echo $data['cat_id'] ?></td>
                                             <td><?php echo $data['cat_name'] ?></td>
-                                            <td><a href="cat_edit.php?id=<?php echo $data['id'] ?>"
+                                            <td><a href="cat_edit.php?id=<?php echo $data['cat_id'] ?>"
                                                     class="btn btn-success text-dark"><i class="fa-solid fa-pen"></i>
                                                     Edit</a></td>
-                                            <td><a href="cat_delete.php?id=<?php echo $data['id'] ?>"
+                                            <td><a href="cat_delete.php?id=<?php echo $data['cat_id'] ?>"
                                                     class="btn btn-danger"><i class="fa-solid fa-trash"></i> Delete</a></td>
                                         </tr>
                                     <?php } ?>

@@ -1,23 +1,31 @@
 <?php
 include "connection.php";
-session_start();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Focus - Bootstrap Admin Dashboard</title>
+    <title>Focus - Bootstrap Admin Dashboard </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
     <link rel="stylesheet" href="./vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="./vendor/owl-carousel/css/owl.theme.default.min.css">
     <link href="./vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
     <link href="./css/style.css" rel="stylesheet">
+
+
+
 </head>
+
 <body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
     <div id="preloader">
         <div class="sk-three-bounce">
             <div class="sk-child sk-bounce1"></div>
@@ -25,8 +33,19 @@ session_start();
             <div class="sk-child sk-bounce3"></div>
         </div>
     </div>
+    <!--*******************
+        Preloader end
+    ********************-->
 
+
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
     <div id="main-wrapper">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
         <div class="nav-header">
             <a href="index.php" class="brand-logo">
                 <img class="logo-abbr" src="./images/logo.png" alt="">
@@ -40,7 +59,13 @@ session_start();
                 </div>
             </div>
         </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
 
+        <!--**********************************
+            Header start
+        ***********************************-->
         <div class="header">
             <div class="header-content">
                 <nav class="navbar navbar-expand">
@@ -57,6 +82,7 @@ session_start();
                                 </div>
                             </div>
                         </div>
+
                         <ul class="navbar-nav header-right">
                             <li class="nav-item dropdown notification_dropdown">
                                 <a class="nav-link" href="#" role="button" data-toggle="dropdown">
@@ -114,33 +140,41 @@ session_start();
                                             <span class="notify-time">3:20 am</span>
                                         </li>
                                     </ul>
-                                    <a class="all-notification" href="#">See all notifications <i class="ti-arrow-right"></i></a>
+                                    <a class="all-notification" href="#">See all notifications <i
+                                            class="ti-arrow-right"></i></a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown header-profile">
-                                <?php if (isset($_SESSION['user_name'])): ?>
-                                    <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                        <i class="mdi mdi-account"></i> <?php echo $_SESSION['user_name']; ?>
+                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
+                                    <i class="mdi mdi-account"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a href="./app-profile.html" class="dropdown-item">
+                                        <i class="icon-user"></i>
+                                        <span class="ml-2">Profile </span>
                                     </a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="#">
-                                            <i class="mdi mdi-email"></i> <?php echo $_SESSION['user_email']; ?>
-                                        </a>
-                                        <a class="dropdown-item" href="./Signup/logout.php">
-                                            <i class="mdi mdi-logout"></i> Logout
-                                        </a>
-                                    </div>
-                                <?php else: ?>
-                                    <a class="nav-link" href="Signup/login_email.php">
-                                        <i class="mdi mdi-account"></i>
+                                    <a href="./email-inbox.html" class="dropdown-item">
+                                        <i class="icon-envelope-open"></i>
+                                        <span class="ml-2">Inbox </span>
                                     </a>
-                                <?php endif; ?>
+                                    <a href="../logout.php" class="dropdown-item">
+                                        <i class="icon-key"></i>
+                                        <span class="ml-2">Logout </span>
+                                    </a>
+                                </div>
                             </li>
                         </ul>
                     </div>
                 </nav>
             </div>
         </div>
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
         <div class="quixnav">
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
@@ -161,10 +195,13 @@ session_start();
                     </li>
                     <li><a href="user_show.php"><i class="icon icon-single-04"></i><span class="nav-text">Users</span></a></li>
                     <li><a href="law_show.php"><i class="icon icon-single-04"></i><span class="nav-text">Lawyers</span></a></li>
-                    <li><a href="appointment.php"><i class="icon icon-single-04"></i><span class="nav-text">Appointments</span></a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
+
+
         </div>
-    </div>
-</body>
-</html>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->

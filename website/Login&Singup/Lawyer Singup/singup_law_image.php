@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Ensure required session variables are set
     $required_fields = [
-        'first-name', 'last-name', 'email', 'number', 'address', 'password',
+        'first-name', 'last-name', 'email', 'number', 'address', 'dob', 'password',
         'bar_council_number', 'practicing_since', 'specialization', 'description',
         'degrees', 'universities', 'languages_spoken', 'days', 'times', 'fee', 'profile-image', 'cover-image', 'about-me'
     ];
@@ -72,12 +72,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+    // Ensure 'days' and 'times' are arrays before imploding
+    $days = is_array($_SESSION['days']) ? implode(',', $_SESSION['days']) : $_SESSION['days'];
+    $times = is_array($_SESSION['times']) ? implode(',', $_SESSION['times']) : $_SESSION['times'];
+
     // Retrieve data from session
     $firstName = $_SESSION['first-name'];
     $lastName = $_SESSION['last-name'];
     $email = $_SESSION['email'];
     $number = $_SESSION['number'];
     $address = $_SESSION['address'];
+    $dob = $_SESSION['dob'];
     $password = $_SESSION['password'];
     $barCouncil = $_SESSION['bar_council_number'];
     $since = $_SESSION['practicing_since'];
@@ -86,16 +91,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $degree = $_SESSION['degrees'];
     $university = $_SESSION['universities'];
     $language = $_SESSION['languages_spoken'];
-    $days = implode(',', $_SESSION['days']);
-    $times = implode(',', $_SESSION['times']);
     $fee = $_SESSION['fee'];
     $aboutMe = $_SESSION['about-me'];
     $profileImage = $_SESSION['profile-image'];
     $coverImage = $_SESSION['cover-image'];
+    $_SESSION['days'] = explode(',', $daysString); // Assuming $daysString is a comma-separated string of days
+    $_SESSION['times'] = explode(',', $timesString); // Assuming $timesString is a comma-separated string of times
+
 
     // Prepare and bind
-    $stmt = $conn->prepare("INSERT INTO lawyer (`name`, `last name`, `email`, `number`, `address`, `password`, `bar council`, `since`, `specialist`, `description`, `degree`, `university`, `language`, `day`, `Time`, `fee`, `image`, `about me`, `cover image`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssssssssssssssss", $firstName, $lastName, $email, $number, $address, $password, $barCouncil, $since, $specialist, $description, $degree, $university, $language, $days, $times, $fee, $profileImage, $aboutMe, $coverImage);
+    $stmt = $conn->prepare("INSERT INTO lawyer (`name`, `last name`, `email`, `dob`, `number`, `address`, `password`, `bar council`, `since`, `specialist`, `description`, `degree`, `university`, `language`, `day`, `Time`, `fee`, `image`, `about me`, `cover image`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssssssssssssssssss", $firstName, $lastName, $email, $dob, $number, $address, $password, $barCouncil, $since, $specialist, $description, $degree, $university, $language, $days, $times, $fee, $profileImage, $aboutMe, $coverImage);
 
     // Execute the statement
     if ($stmt->execute()) {
@@ -193,7 +199,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             width: 100%;
             height: 200px;
         }
-
     </style>
 </head>
 

@@ -1,30 +1,21 @@
 <?php
 session_start();
-include 'conn.php';
+include '../connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_SESSION['email'];
     $password = $_POST['password'];
 
-    // Check user table
-    $query_user = "SELECT * FROM user WHERE email='$email' AND password='$password'";
-    $result_user = mysqli_query($conn, $query_user);
+    // Check admin table
+    $query_admin = "SELECT name, email FROM admin WHERE email='$email' AND password='$password'";
+    $result_admin = mysqli_query($con, $query_admin);
 
-    if (mysqli_num_rows($result_user) == 1) {
-        $_SESSION['email'] = $email;
-        $_SESSION['user_type'] = 'user';
-        header('Location: ../index.php'); // Redirect to user page
-        exit();
-    }
-
-    // Check lawyer table
-    $query_lawyer = "SELECT * FROM lawyer WHERE email='$email' AND password='$password'";
-    $result_lawyer = mysqli_query($conn, $query_lawyer);
-
-    if (mysqli_num_rows($result_lawyer) == 1) {
-        $_SESSION['email'] = $email;
-        $_SESSION['user_type'] = 'lawyer';
-        header('Location: ../index.php'); // Redirect to lawyer page
+    if (mysqli_num_rows($result_admin) == 1) {
+        $row = mysqli_fetch_assoc($result_admin);
+        $_SESSION['user_name'] = $row['name'];
+        $_SESSION['user_email'] = $row['email'];
+        $_SESSION['user_type'] = 'admin';
+        header('Location: ../index.php'); // Redirect to admin page
         exit();
     }
 
@@ -34,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="card">
@@ -61,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <p>Use your Account</p>
             <form action="" method="POST">
                 <div class="password-group <?php echo !empty($error) ? 'invalid' : ''; ?>">
-                    <input type="password" id="password" name="password" placeholder="" required autofocus>
+                    <input type="password" id="password" name="password" placeholder="" required>
                     <label for="password">Password</label>
                     <span id="toggle-password" class="input-icon fa fa-eye"></span>
                 </div>
@@ -75,8 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="dropdown">
                     <p>Create Account</p>
                     <div class="dropdown-content">
-                        <a href="signup_user_name.php">Create User Account</a>
-                        <a href="../index.php">Create Lawyer Account</a>
+                        <a href="signup_admin_name.php">Create Account</a>
                     </div>
                 </div>
             </div>
@@ -103,4 +95,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         });
     </script>
 </body>
+
 </html>

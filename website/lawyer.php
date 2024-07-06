@@ -1,6 +1,6 @@
 <?php
-include('header.php');
-include('connection.php');
+include('headerss.php');
+// include('connection.php');
 
 $q = "SELECT lawyer.*, categorie.cat_name FROM lawyer JOIN categorie ON categorie.cat_id = lawyer.specialist";
 $res = mysqli_query($con, $q);
@@ -18,11 +18,13 @@ $res = mysqli_query($con, $q);
         .row {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around; /* Space evenly for the card layout */
+            justify-content: space-around;
+            /* Space evenly for the card layout */
         }
 
         .card {
-            flex: 0 1 calc(33.333% - 20px); /* 3 cards per row with spacing */
+            flex: 0 1 calc(33.333% - 20px);
+            /* 3 cards per row with spacing */
             margin: 10px;
             box-sizing: border-box;
         }
@@ -70,6 +72,64 @@ $res = mysqli_query($con, $q);
             text-decoration: none;
             font-size: 1.2em;
         }
+        .input-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  position: relative;
+}
+
+.input {
+  border-style: none;
+  height: 50px;
+  width: 50px;
+  padding: 10px;
+  outline: none;
+  border-radius: 50%;
+  transition: .5s ease-in-out;
+  background-color: #7e4fd4;
+  box-shadow: 0px 0px 3px #f3f3f3;
+  padding-right: 40px;
+  color: #000;
+}
+
+.input::placeholder,
+.input {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 17px;
+}
+
+.input::placeholder {
+  color: #8f8f8f;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  outline: none;
+  border-style: none;
+  border-radius: 50%;
+  pointer-events: painted;
+  background-color: transparent;
+  transition: .2s linear;
+}
+
+.icon:focus~.input,
+.input:focus {
+  box-shadow: none;
+  width: 250px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom: 3px solid #7e4fd4;
+  transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
     </style>
 </head>
 
@@ -93,20 +153,19 @@ $res = mysqli_query($con, $q);
     </center>
     <div class="row">
         <?php while ($data = mysqli_fetch_assoc($res)) { ?>
-            <a href="update_law.php?id=<?php echo $data['id']; ?>" class="card">
-                <div class="colorlib-staff">
-                    <img src="<?php echo $data['image']; ?>" alt="Image">
-                    <h3><?php echo $data['name']; ?></h3>
-                    <strong class="role"><?php echo $data['cat_name']; ?></strong>
-                    <p><?php echo $data['degree']; ?></p>
-                    <ul class="colorlib-social-icons">
-                        <li><a href="#"><i class="icon-facebook"></i></a></li>
-                        <li><a href="#"><i class="icon-twitter"></i></a></li>
-                        <li><a href="#"><i class="icon-dribbble"></i></a></li>
-                        <li><a href="#"><i class="icon-github"></i></a></li>
-                    </ul>
-                </div>
-            </a>
+            <div class="colorlib-staff">
+            <img src="../website/Login&Singup/Lawyer Singup/uploads/<?php echo $data['image']; ?>" alt="Image" style="width:90px; height:90px; border-radius:50%;">
+                <h3><?php echo $data['name']; ?></h3>
+                <strong class="role"><?php echo $data['cat_name']; ?></strong>
+                <p><?php echo $data['degree']; ?></p>
+                <ul class="colorlib-social-icons">
+                    <!-- <li><a href="#"><i class="icon-facebook"></i></a></li>
+                    <li><a href="#"><i class="icon-twitter"></i></a></li>
+                    <li><a href="#"><i class="icon-dribbble"></i></a></li>
+                    <li><a href="#"><i class="icon-github"></i></a></li> -->
+                </ul>
+                <a href="profile.php?id=<?php echo $data['id'] ?>" class="btn btn-primary">Show</a>
+            </div>
         <?php } ?>
     </div>
 </body>

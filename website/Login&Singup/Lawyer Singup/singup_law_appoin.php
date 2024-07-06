@@ -1,15 +1,23 @@
+
+Edit
+Copy code
 <?php
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $days = [];
-    $times = [];
+    $time = "";
 
-    foreach ($_POST['availability'] as $day => $timeslot) {
-        if (isset($timeslot['enabled'])) {
+    foreach ($_POST['availability'] as $day => $enabled) {
+        if ($enabled == "1") {
             $days[] = $day;
-            $times[] = date("H:i:s", strtotime($timeslot['start'])) . '-' . date("H:i:s", strtotime($timeslot['end']));
         }
+    }
+
+    if (isset($_POST['start_time']) && isset($_POST['end_time'])) {
+        $start_time = date("h:i A", strtotime($_POST['start_time']));
+        $end_time = date("h:i A", strtotime($_POST['end_time']));
+        $times = $start_time . ' to ' . $end_time;
     }
 
     $_SESSION['days'] = $days;
@@ -54,12 +62,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     foreach ($days as $day) {
                         echo '<div class="day-group">';
                         echo '<label>' . $day . '</label>';
-                        echo '<input type="checkbox" name="availability[' . $day . '][enabled]" value="1">';
-                        echo '<input type="time" name="availability[' . $day . '][start]" class="time-input">';
-                        echo '<input type="time" name="availability[' . $day . '][end]" class="time-input">';
+                        echo '<input type="checkbox" name="availability[' . $day . ']" value="1">';
                         echo '</div>';
                     }
                     ?>
+                    <div class="time-group">
+                        <label>Start Time</label>
+                        <input type="time" name="start_time" required>
+                        <label>End Time</label>
+                        <input type="time" name="end_time" required>
+                    </div>
                 </div>
                 <button type="button" class="previous-button" onclick="history.back()">Previous</button>
                 <button type="submit">Next</button>

@@ -61,8 +61,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="description">
                     <textarea id="description" name="description" placeholder=" " required></textarea>
-                    <label for="description">Description</label>
-                    <small class="condition">Provide a brief description of your professional background.</small>
+                    <label for="description">Service</label>
+                    <small class="condition">Provide a brief Service of your professional background.</small>
                 </div>
                 <button type="button" class="previous-button" onclick="history.back()">Previous</button>
                 <button type="submit">Next</button>

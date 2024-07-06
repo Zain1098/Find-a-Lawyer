@@ -36,13 +36,13 @@ Content body start
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Image</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
+                                        <th>Name</th>
                                         <th>Email</th>
-                                        <th>Password</th>
-                                        <th>Phone Number</th>
-                                        <th>Address</th>
+                                        <th>Phone_Num</th>
+                                        <th>Lawyer</th>
+                                        <!-- <th>Password</th> -->
+                                        <th>Available</th>
+                                        <!-- <th>Address</th>
                                         <th>About</th>
                                         <th>Description</th>
                                         <th>Language</th>
@@ -52,36 +52,30 @@ Content body start
                                         <th>University</th>
                                         <th>Degree</th>
                                         <th>Available</th>
-                                        <th>Fee</th>
+                                        <th>Fee</th> -->
                                         <!-- <th>Edit</th> -->
                                         <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $q = "select * from lawyer";
-                                    $result = mysqli_query($con, $q);
-                                    if ($result) {
-                                        while ($data = mysqli_fetch_assoc($rows)) { ?>
+                                    $q = "select * from appointment";
+                                    $result2 = mysqli_query($con, $q);
+                                    if ($result2) {
+                                        while ($data2 = mysqli_fetch_assoc($result2)) { ?>
                                             <tr>
-                                                <td><?php echo $data['id'] ?></td>
-                                                <td><img src="../website/Login&Singup/Lawyer Singup/uploads/<?php echo $data['image']; ?>" alt="Image" style="width:50px; height:50px; border-radius:50%;"></td>
-                                                <td><?php echo $data['name'] ?></td>
-                                                <td><?php echo $data['last name'] ?></td>
-                                                <td><?php echo $data['email'] ?></td>
-                                                <td><?php echo $data['password'] ?></td>
-                                                <td><?php echo $data['number'] ?></td>
-                                                <td><?php echo $data['address'] ?></td>
-                                                <td><?php echo $data['about me'] ?></td>
-                                                <td><?php echo $data['description'] ?></td>
-                                                <td><?php echo $data['language'] ?></td>
-                                                <td><?php echo $data['cat_name'] ?></td>
-                                                <td><?php echo $data['bar council'] ?></td>
-                                                <td><?php echo $data['since'] ?></td>
-                                                <td><?php echo $data['university'] ?></td>
-                                                <td><?php echo $data['degree'] ?></td>
-                                                <td><?php echo $data['day'] ?></td>
-                                                <td><?php echo $data['fee'] ?></td>
+                                                <td><?php echo $data2['id'] ?></td>
+                                                <!-- <td><img src="../website/Login&Singup/Lawyer Singup/uploads/<?php
+                                                //  echo $data['image']; 
+                                                 ?>" alt="Image" style="width:50px; height:50px; border-radius:50%;"></td> -->
+                                                <td><?php echo $data2['name'] ?></td>
+                                                
+                                                <td><?php echo $data2['email'] ?></td>
+                                              
+                                                <td><?php echo $data2['phone'] ?></td>
+                                                <td><?php echo $data2['lawyer'] ?></td>
+                                                <td><?php echo $data2['available'] ?></td>
+                                               
 
                                                 <td><a href="law_delete.php?id=<?php echo $data['id'] ?>"
                                                         class="btn btn-danger"><i class="fa-solid fa-trash"></i> Delete</a></td>
