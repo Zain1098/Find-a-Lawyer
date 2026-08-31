@@ -20,5 +20,10 @@ desktop.ini
 *.sublime-workspace
 *.sublime-project
 
+# Archives
+*.zip
+*.tar.gz
+*.rar
+
 # Server / Temporary Uploads (Optional: keep directory structure, ignore junk)
 # website/uploads/temp/*
