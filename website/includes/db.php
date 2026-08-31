@@ -38,7 +38,7 @@ if ($is_localhost) {
     // Live Server (InfinityFree) Production Defaults
     $default_host = 'sql310.infinityfree.com';
     $default_user = 'if0_42797048';
-    $default_pass = '';
+    $default_pass = '8DoAiTuQ4a';
     $default_name = 'if0_42797048_e_project';
 }
 

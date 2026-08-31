@@ -13,8 +13,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
 // Pending requests counter for lawyer
 $lawyer_pending_count = 0;
-if ($current_user_type === 'lawyer' && $current_user_id) {
-    $lp_res = mysqli_query($con, "SELECT COUNT(*) as pending_total FROM appointment WHERE lawyer = " . intval($current_user_id) . " AND status = 'pending'");
+if ($con && $current_user_type === 'lawyer' && $current_user_id) {
+    $lp_res = @mysqli_query($con, "SELECT COUNT(*) as pending_total FROM appointment WHERE lawyer = " . intval($current_user_id) . " AND status = 'pending'");
     if ($lp_res && $lp_row = mysqli_fetch_assoc($lp_res)) {
         $lawyer_pending_count = intval($lp_row['pending_total']);
     }

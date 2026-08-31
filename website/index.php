@@ -3,18 +3,27 @@ require_once __DIR__ . '/header.php';
 
 // Dynamic stats for counters
 $count_lawyers = 15;
-$l_count_res = mysqli_query($con, "SELECT COUNT(*) as total FROM lawyer");
-if ($l_count_res && $row = mysqli_fetch_assoc($l_count_res)) $count_lawyers = max(intval($row['total']), 15);
-
 $count_appointments = 120;
-$a_count_res = mysqli_query($con, "SELECT COUNT(*) as total FROM appointment");
-if ($a_count_res && $row = mysqli_fetch_assoc($a_count_res)) $count_appointments = max(intval($row['total']), 120);
+$categories_res = false;
+$lawyers_res = false;
 
-// Dynamic categories
-$categories_res = mysqli_query($con, "SELECT * FROM categorie ORDER BY cat_id ASC LIMIT 6");
+if ($con && ($con instanceof mysqli)) {
+    $l_count_res = @mysqli_query($con, "SELECT COUNT(*) as total FROM lawyer");
+    if ($l_count_res && $row = mysqli_fetch_assoc($l_count_res)) {
+        $count_lawyers = max(intval($row['total']), 15);
+    }
 
-// Dynamic top lawyers
-$lawyers_res = mysqli_query($con, "SELECT lawyer.*, categorie.cat_name FROM lawyer JOIN categorie ON categorie.cat_id = lawyer.specialist WHERE lawyer.status = 'active' ORDER BY lawyer.id DESC LIMIT 3");
+    $a_count_res = @mysqli_query($con, "SELECT COUNT(*) as total FROM appointment");
+    if ($a_count_res && $row = mysqli_fetch_assoc($a_count_res)) {
+        $count_appointments = max(intval($row['total']), 120);
+    }
+
+    // Dynamic categories
+    $categories_res = @mysqli_query($con, "SELECT * FROM categorie ORDER BY cat_id ASC LIMIT 6");
+
+    // Dynamic top lawyers
+    $lawyers_res = @mysqli_query($con, "SELECT lawyer.*, categorie.cat_name FROM lawyer JOIN categorie ON categorie.cat_id = lawyer.specialist WHERE lawyer.status = 'active' ORDER BY lawyer.id DESC LIMIT 3");
+}
 ?>
 
 	<aside id="colorlib-hero" class="js-fullheight">

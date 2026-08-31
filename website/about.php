@@ -2,7 +2,7 @@
 require_once __DIR__ . '/header.php';
 
 // Dynamic lawyers
-$lawyers_res = mysqli_query($con, "SELECT lawyer.*, categorie.cat_name FROM lawyer JOIN categorie ON categorie.cat_id = lawyer.specialist WHERE lawyer.status = 'active' ORDER BY lawyer.id DESC LIMIT 3");
+$lawyers_res = ($con && ($con instanceof mysqli)) ? @mysqli_query($con, "SELECT lawyer.*, categorie.cat_name FROM lawyer JOIN categorie ON categorie.cat_id = lawyer.specialist WHERE lawyer.status = 'active' ORDER BY lawyer.id DESC LIMIT 3") : false;
 ?>
 
 <style>

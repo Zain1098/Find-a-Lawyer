@@ -3,7 +3,7 @@ require_once __DIR__ . '/header.php';
 
 // Fetch Categories for Filter Dropdown
 $categories = [];
-$cat_query = mysqli_query($con, "SELECT * FROM categorie ORDER BY cat_name ASC");
+$cat_query = ($con && ($con instanceof mysqli)) ? @mysqli_query($con, "SELECT * FROM categorie ORDER BY cat_name ASC") : false;
 if ($cat_query) {
     while ($c = mysqli_fetch_assoc($cat_query)) {
         $categories[] = $c;
