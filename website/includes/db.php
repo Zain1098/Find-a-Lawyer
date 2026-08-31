@@ -22,17 +22,37 @@ foreach ($env_paths as $env_file) {
     }
 }
 
+// Detect environment: Localhost vs Live Server (InfinityFree)
+$http_host = $_SERVER['HTTP_HOST'] ?? $_SERVER['SERVER_NAME'] ?? '';
+$is_localhost = in_array($http_host, ['localhost', '127.0.0.1']) 
+    || strpos($http_host, 'localhost:') === 0 
+    || strpos($http_host, '127.0.0.1:') === 0;
+
+if ($is_localhost) {
+    // Local XAMPP Environment Defaults
+    $default_host = 'localhost';
+    $default_user = 'root';
+    $default_pass = '';
+    $default_name = 'e_project';
+} else {
+    // Live Server (InfinityFree) Production Defaults
+    $default_host = 'sql310.infinityfree.com';
+    $default_user = 'if0_42797048';
+    $default_pass = '';
+    $default_name = 'if0_42797048_e_project';
+}
+
 if (!defined('DB_HOST')) {
-    define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
+    define('DB_HOST', getenv('DB_HOST') ?: $default_host);
 }
 if (!defined('DB_USER')) {
-    define('DB_USER', getenv('DB_USER') ?: 'root');
+    define('DB_USER', getenv('DB_USER') ?: $default_user);
 }
 if (!defined('DB_PASS')) {
-    define('DB_PASS', getenv('DB_PASS') !== false ? getenv('DB_PASS') : '');
+    define('DB_PASS', getenv('DB_PASS') !== false ? getenv('DB_PASS') : $default_pass);
 }
 if (!defined('DB_NAME')) {
-    define('DB_NAME', getenv('DB_NAME') ?: 'e_project');
+    define('DB_NAME', getenv('DB_NAME') ?: $default_name);
 }
 
 // Global connection instance
