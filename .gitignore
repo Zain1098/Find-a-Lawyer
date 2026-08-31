@@ -1,0 +1,24 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# SASS & Build Caches
+.sass-cache/
+*.css.map
+*.sass.map
+
+# Environment & Sensitive Configs
+.env
+.env.local
+.env.*.local
+*.log
+
+# IDE & Editor Configs
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Server / Temporary Uploads (Optional: keep directory structure, ignore junk)
+# website/uploads/temp/*

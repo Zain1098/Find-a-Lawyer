@@ -1,0 +1,588 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #202124;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    max-width: 900px;
+    height: auto;
+    background-color: black;
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+}
+
+.left-section,
+.right-section {
+    width: 100%;
+    text-align: center;
+}
+
+.left-section {
+    padding-bottom: 80px;
+}
+
+.right-section {
+    padding-top: 20px;
+}
+
+.logo a {
+    background-color: rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+    color: rgb(190, 163, 77);
+    cursor: pointer;
+    display: inline;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 40.8px;
+    padding: 5px 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.5s ease;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+}
+
+p {
+    margin: 10px 0 20px;
+}
+
+.instructions {
+    font-size: 14px;
+    color: #9aa0a6;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.input-group input,
+.input-group textarea {
+    width: calc(100% - 40px); /* Adjusted width for input and textarea */
+    padding: 12px 10px 10px 10px;
+    border: 2px solid #3c4043;
+    border-radius: 20px;
+    background-color: black;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s, padding-top 0.3s;
+    box-sizing: border-box;
+}
+
+.input-group input[type="file"] {
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #3c4043;
+    color: #9aa0a6;
+    cursor: pointer;
+}
+
+.input-group label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    background-color: black;
+    padding: 0 5px;
+    color: #9aa0a6;
+    pointer-events: none;
+    transition: all 0.3s;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    border-color: #8ab4f8;
+    padding-top: 20px;
+}
+
+.input-group input:focus + label,
+.input-group textarea:focus + label,
+.input-group input:not(:placeholder-shown) + label,
+.input-group textarea:not(:placeholder-shown) + label {
+    top: -5px;
+    transform: translateY(0);
+    font-size: 12px;
+    color: #8ab4f8;
+}
+.input-group .condition {
+    font-size: 12px;
+    color: #9aa0a6;
+    position: relative;
+    /* top: 10px; */
+    bottom: -18px;
+    left: 10px;
+}
+
+
+button {
+    width: 30%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #1a73e8;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #1558c7;
+}
+
+@media (min-width: 600px) {
+    .container {
+        flex-direction: row;
+        height: 70vh;
+    }
+
+    .left-section,
+    .right-section {
+        width: 50%;
+    }
+
+    .left-section {
+        padding-right: 20px;
+        text-align: left;
+    }
+
+    .right-section {
+        padding-left: 20px;
+        text-align: left;
+    }
+
+    button {
+        width: auto;
+        margin-left: auto;
+        background-color: rgb(190, 163, 77);
+        float: right;
+    }
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.dropbtn {
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: black;
+    min-width: 160px;
+    z-index: 1;
+    border-radius: 4px;
+}
+
+.dropdown-content a {
+    color: #1558c7;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    font-size: 12px;
+}
+
+.dropdown-content a:hover {
+    background-color: rgb(190, 163, 77);
+    color: white;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #1558c7;
+}
+
+.dropdown p {
+    color: #1558c7;
+}
+
+.previous-button {
+    background-color: rgb(190, 163, 77);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-right: 10px;
+    float: left;
+    width: auto;
+    /* Ensure the button width is not too large */
+}
+
+.previous-button:hover {
+    background-color: #1558c7;
+    /* Darker gray on hover */
+}
+
+@media (max-width: 599px) {
+    .previous-button {
+        width: auto;
+        /* Ensure the button width is not too large */
+        margin: 10px 0;
+        float: none;
+        /* Remove float */
+    }
+}
+
+/* Style for drop_cat */
+.drop_cat {
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.drop_cat select {
+    width: calc(100% - 20px);
+    padding: 12px 10px;
+    border: 2px solid #3c4043;
+    border-radius: 20px;
+    background-color: #180202;
+    color: rgb(190, 163, 77);
+    font-size: 16px;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+    transition: border 0.3s, padding-top 0.3s;
+}
+
+.drop_cat select:focus {
+    border-color: #8ab4f8;
+}
+
+.drop_cat label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    background-color: black;
+    padding: 0 5px;
+    color: #9aa0a6;
+    pointer-events: none;
+    transition: all 0.3s;
+}
+
+.drop_cat select:focus+label,
+.drop_cat select:not(:placeholder-shown)+label {
+    top: -5px;
+    transform: translateY(0);
+    font-size: 12px;
+    color: #8ab4f8;
+}
+
+.description {
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.description textarea {
+    width: calc(100% - 20px);
+    padding: 12px 10px 10px 10px;
+    border: 2px solid #3c4043;
+    border-radius: 20px;
+    background-color: black;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    resize: none;
+    transition: border 0.3s, padding-top 0.3s;
+}
+
+.description label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    background-color: black;
+    padding: 0 5px;
+    color: #9aa0a6;
+    pointer-events: none;
+    transition: all 0.3s;
+}
+
+.description textarea:focus {
+    border-color: #8ab4f8;
+    padding-top: 20px;
+}
+
+.description textarea:focus+label,
+.description textarea:not(:placeholder-shown)+label {
+    top: -5px;
+    transform: translateY(0);
+    font-size: 12px;
+    color: #8ab4f8;
+}
+
+.description .condition {
+    font-size: 12px;
+    color: #9aa0a6;
+    position: absolute;
+    bottom: -18px;
+    left: 10px;
+}
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css');
+
+.custom-select,
+.custom-input-date,
+.custom-input-time {
+    width: calc(100% - 40px);
+    /* Adjusted to make space for the icon */
+    padding: 12px 30px 12px 10px;
+    /* Add space for the icon */
+    border: 2px solid #3c4043;
+    border-radius: 20px;
+    background-color: black;
+    color: rgb(190, 163, 77);
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s, padding-top 0.3s;
+    position: relative;
+}
+
+.custom-label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    background-color: black;
+    padding: 0 5px;
+    color: #9aa0a6;
+    pointer-events: none;
+    transition: all 0.3s;
+}
+
+.custom-select:focus,
+.custom-input-date:focus,
+.custom-input-time:focus {
+    border-color: #8ab4f8;
+    padding-top: 20px;
+}
+
+.custom-select:focus+.custom-label,
+.custom-select:not(:placeholder-shown)+.custom-label,
+.custom-input-date:focus+.custom-label,
+.custom-input-date:not(:placeholder-shown)+.custom-label,
+.custom-input-time:focus+.custom-label,
+.custom-input-time:not(:placeholder-shown)+.custom-label {
+    top: -5px;
+    transform: translateY(0);
+    font-size: 12px;
+    color: #8ab4f8;
+}
+
+.input-icon {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    /* Change cursor to pointer */
+}
+
+.input-icon i:hover {
+    color: #8ab4f8;
+    /* Change color on hover */
+}
+
+/* Tooltip */
+.input-icon[title]::after {
+    content: attr(title);
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.input-icon:hover [title]::after {
+    opacity: 1;
+    /* Show tooltip on hover */
+}
+
+/* General input styles */
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.custom-input,
+.custom-select {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.custom-input:focus,
+.custom-select:focus {
+    border-color: #007bff;
+}
+
+.custom-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Styles for availability section */
+.availability-section {
+    margin-top: 20px;
+}
+
+.availability-section h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.day-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.day-group label {
+    width: 100px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.day-group input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.time-input {
+    width: calc(50% - 15px);
+    margin-right: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.input-group input {
+    width: calc(100% - 20px);
+    padding: 12px 10px 10px 10px;
+    border: 2px solid #3c4043;
+    border-radius: 20px;
+    background-color: black;
+    color: rgb(190, 163, 77);
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s, padding-top 0.3s;
+}
+
+.password-group {
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.password-group input {
+    width: calc(100% - 20px);
+    padding: 12px 10px 10px 10px;
+    border: 2px solid #3c4043;
+    border-radius: 20px;
+    background-color: black;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s, padding-top 0.3s;
+}
+
+.password-group label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    background-color: black;
+    padding: 0 5px;
+    color: #9aa0a6;
+    pointer-events: none;
+    transition: all 0.3s;
+}
+
+.password-group input:focus {
+    border-color: #8ab4f8;
+}
+
+.password-group input:focus+label,
+.password-group input:not(:placeholder-shown)+label {
+    top: -5px;
+    transform: translateY(0);
+    font-size: 12px;
+    color: #8ab4f8;
+}
+
+.password-group .condition {
+    font-size: 12px;
+    color: #9aa0a6;
+    position: absolute;
+    bottom: -18px;
+    left: 10px;
+}
+
+.password-group .input-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    /* Change cursor to pointer */
+}
+
+.password-group .input-icon i:hover {
+    color: #8ab4f8;
+    /* Change color on hover */
+}

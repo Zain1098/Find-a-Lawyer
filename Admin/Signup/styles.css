@@ -1,0 +1,297 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+body {
+    background-color: #202124;
+    color: #E8EAED;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.logo a {
+    background-color: rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+    color: rgb(190, 163, 77);
+    cursor: pointer;
+    display: inline;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 40.8px;
+    padding: 5px 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.5s ease;
+}
+
+.card {
+    background-color: black;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+.card h1 {
+    font-size: 24px;
+    margin: 0;
+    color: #E8EAED;
+}
+
+.card h2 {
+    font-size: 18px;
+    margin: 10px 0 20px;
+    color: #E8EAED;
+}
+
+.card p {
+    font-size: 14px;
+    margin: 0 0 20px;
+    color: #9AA0A6;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 10px 10px 10px;
+    border: 2px solid #3c4043;
+    border-radius: 20px;
+    background-color: black;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s, padding-top 0.3s;
+}
+
+.input-group label {
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    transform: translateY(-50%);
+    background-color: black;
+    padding: 0 5px;
+    color: #9aa0a6;
+    pointer-events: none;
+    transition: all 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #8ab4f8;
+    padding-top: 20px;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+    top: -5px;
+    transform: translateY(0);
+    font-size: 12px;
+    color: #8ab4f8;
+}
+
+.input-group .condition {
+    font-size: 12px;
+    color: #9aa0a6;
+    position: absolute;
+    bottom: -18px;
+    left: 10px;
+}
+
+form a {
+    color: #8AB4F8;
+    font-size: 14px;
+    text-decoration: none;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    align-self: flex-start;
+}
+
+button {
+    width: auto;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: rgb(190, 163, 77);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #1558c7;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #9AA0A6;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #9AA0A6;
+}
+
+.footer-links a {
+    color: #8AB4F8;
+    text-decoration: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.dropbtn {
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: black;
+    min-width: 160px;
+    z-index: 1;
+    border-radius: 4px;
+}
+
+.dropdown-content a {
+    color: #1558c7;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    font-size: 12px;
+}
+
+.dropdown-content a:hover {
+    background-color: rgb(190, 163, 77);
+    color: white;
+    height: fit-content;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #8AB4F8;
+}
+
+.dropdown p {
+    color: #8AB4F8;
+}
+
+@media screen and (max-width: 600px) {
+    .card {
+        padding: 20px;
+        width: 100%;
+    }
+
+    .input-group input {
+        padding: 10px;
+    }
+    
+    button {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+.password-group {
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.password-group input {
+    width: calc(100% - 40px); /* Adjust width to accommodate icon */
+    padding: 12px 10px;
+    padding-right: 40px; /* Add space for the icon */
+    border: 2px solid #3c4043;
+    border-radius: 20px;
+    background-color: black;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.password-group label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    background-color: black;
+    padding: 0 5px;
+    color: #9aa0a6;
+    pointer-events: none;
+    transition: all 0.3s;
+}
+
+.password-group input:focus {
+    border-color: #8ab4f8;
+}
+
+.password-group input:focus + label,
+.password-group input:not(:placeholder-shown) + label {
+    top: -5px;
+    transform: translateY(0);
+    font-size: 12px;
+    color: #8ab4f8;
+}
+
+.password-group .condition {
+    font-size: 12px;
+    color: #9aa0a6;
+    position: absolute;
+    bottom: -18px;
+    left: 10px;
+}
+
+.password-group .input-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.password-group .input-icon i:hover {
+    color: #8ab4f8; /* Change color on hover */
+}

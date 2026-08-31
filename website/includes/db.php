@@ -1,0 +1,109 @@
+<?php
+/**
+ * Database Configuration & Connection Helper
+ * Find-a-Lawyer Platform
+ */
+
+if (!defined('DB_HOST')) {
+    define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
+}
+if (!defined('DB_USER')) {
+    define('DB_USER', getenv('DB_USER') ?: 'root');
+}
+if (!defined('DB_PASS')) {
+    define('DB_PASS', getenv('DB_PASS') !== false ? getenv('DB_PASS') : '');
+}
+if (!defined('DB_NAME')) {
+    define('DB_NAME', getenv('DB_NAME') ?: 'e_project');
+}
+
+// Global connection instance
+global $con, $conn;
+
+if (!isset($con) || !($con instanceof mysqli) || @$con->ping() === false) {
+    // Disable default mysqli exceptions for custom graceful handling
+    mysqli_report(MYSQLI_REPORT_OFF);
+
+    $con = @mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    if (!$con) {
+        $conn_error = mysqli_connect_error();
+        // Fallback or helpful error message
+        error_log("Database Connection Failed: " . $conn_error);
+    } else {
+        mysqli_set_charset($con, 'utf8mb4');
+    }
+}
+
+// Ensure $conn is always an alias of $con for legacy compatibility
+$conn = $con;
+
+/**
+ * Returns active MySQLi connection
+ * @return mysqli|false
+ */
+function getDbConnection() {
+    global $con;
+    return $con;
+}
+
+/**
+ * Helper to escape string safely
+ * @param string $str
+ * @return string
+ */
+function escapeString($str) {
+    global $con;
+    if (!$con) return addslashes((string)$str);
+    return mysqli_real_escape_string($con, (string)$str);
+}
+
+/**
+ * Helper to sanitize user input for HTML output
+ * @param mixed $data
+ * @return string
+ */
+function sanitizeInput($data) {
+    if (is_null($data)) return '';
+    return htmlspecialchars(trim((string)$data), ENT_QUOTES, 'UTF-8');
+}
+
+/**
+ * Execute a parameterized prepared query safely
+ * @param string $sql
+ * @param array $params
+ * @param string $types e.g. "ssi"
+ * @return mysqli_result|bool
+ */
+function dbExecute($sql, $params = [], $types = '') {
+    global $con;
+    if (!$con) return false;
+
+    if (empty($params)) {
+        return mysqli_query($con, $sql);
+    }
+
+    $stmt = $con->prepare($sql);
+    if (!$stmt) {
+        error_log("Prepare failed: " . $con->error . " | SQL: " . $sql);
+        return false;
+    }
+
+    if (!empty($params)) {
+        if (empty($types)) {
+            $types = str_repeat('s', count($params));
+        }
+        $stmt->bind_param($types, ...$params);
+    }
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result === false && $stmt->errno === 0) {
+        // For INSERT / UPDATE / DELETE return true or affected rows
+        $affected = $stmt->affected_rows;
+        $stmt->close();
+        return $affected >= 0 ? true : false;
+    }
+
+    $stmt->close();
+    return $result;
+}
